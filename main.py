@@ -2,6 +2,7 @@
 
 # Import and initialize the pygame library
 from logic import broad, fix_spot, getPlayer, print_broad, isFilled, checkWinner
+from heuristic import findBestMove
 import pygame
 pygame.init()
 
@@ -42,17 +43,23 @@ while running:
             pos = pygame.mouse.get_pos()
             # pos = (x, y)
             G = gridClick(pos[0], pos[1])
-            if G != None:
+            if G != None and curr_turn == 1:
                 # print(isFilled(G[0], G[1]))
                 if not isFilled(G[0], G[1]):
-                    curr_turn = 2 if curr_turn == 1 else 1
-                    fix_spot(G[0], G[1], curr_turn)
+                    if curr_turn == 1:
+                        fix_spot(G[0], G[1], curr_turn)
+                    curr_turn = 2
                 print(curr_turn)
                 print_broad()
                 win = checkWinner()
                 print(win)
                 if win != 0:
                     running = False
+
+    if curr_turn == 2:
+        best_move = findBestMove(broad)
+        fix_spot(best_move[1], best_move[0], curr_turn)
+        curr_turn = 1
 
     # Fill the background with white
     screen.fill((255, 255, 255))

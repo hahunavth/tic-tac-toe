@@ -20,8 +20,7 @@ function findBestMove(board):
     return bestMove
 """
 
-
-player, opponent = 'x', 'o'
+from constants import player, opponent, empty
  
 # This function returns true if there are moves
 # remaining on the board. It returns false if
@@ -30,7 +29,7 @@ def isMovesLeft(board) :
  
     for i in range(3) :
         for j in range(3) :
-            if (board[i][j] == '-') :
+            if (board[i][j] == empty) :
                 return True
     return False
  
@@ -103,7 +102,7 @@ def minimax(board, depth, isMax) :
             for j in range(3) :
               
                 # Check if cell is empty
-                if (board[i][j]=='-') :
+                if (board[i][j]==empty) :
                  
                     # Make the move
                     board[i][j] = player
@@ -115,7 +114,7 @@ def minimax(board, depth, isMax) :
                                               not isMax) )
  
                     # Undo the move
-                    board[i][j] = '-'
+                    board[i][j] = empty
         return best
  
     # If this minimizer's move
@@ -127,7 +126,7 @@ def minimax(board, depth, isMax) :
             for j in range(3) :
               
                 # Check if cell is empty
-                if (board[i][j] == '-') :
+                if (board[i][j] == empty) :
                  
                     # Make the move
                     board[i][j] = opponent
@@ -137,7 +136,7 @@ def minimax(board, depth, isMax) :
                     best = min(best, minimax(board, depth + 1, not isMax))
  
                     # Undo the move
-                    board[i][j] = '-'
+                    board[i][j] = empty
         return best
  
 # This will return the best possible move for the player
@@ -152,7 +151,7 @@ def findBestMove(board) :
         for j in range(3) :
          
             # Check if cell is empty
-            if (board[i][j] == '-') :
+            if (board[i][j] == empty) :
              
                 # Make the move
                 board[i][j] = player
@@ -162,7 +161,7 @@ def findBestMove(board) :
                 moveVal = minimax(board, 0, False)
  
                 # Undo the move
-                board[i][j] = '-'
+                board[i][j] = empty
  
                 # If the value of the current move is
                 # more than the best value, then update
@@ -181,7 +180,7 @@ if __name__ == '__main__':
   board = [
       [ 'x', 'o', 'x' ],
       [ 'o', 'o', 'x' ],
-      [ '-', '-', '-' ]
+      [ empty, empty, empty ]
   ]
   
   bestMove = findBestMove(board)

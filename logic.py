@@ -4,6 +4,7 @@
     player: x
     player: o
 """
+
 empty = '-'
 p1 = 'x'
 p2 = 'o'

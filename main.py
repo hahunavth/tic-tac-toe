@@ -60,6 +60,12 @@ while running:
         best_move = findBestMove(broad)
         fix_spot(best_move[1], best_move[0], curr_turn)
         curr_turn = 1
+        print(curr_turn)
+        print_broad()
+        win = checkWinner()
+        print(win)
+        if win != 0:
+            running = False
 
     # Fill the background with white
     screen.fill((255, 255, 255))

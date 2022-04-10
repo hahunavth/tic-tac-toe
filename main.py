@@ -9,7 +9,7 @@ pygame.init()
 # Set up the drawing window
 screen = pygame.display.set_mode([500, 500])
 
-curr_turn = 1
+curr_turn = 2
 rect_width = 100
 rect_start_x = 0
 rect_start_y = 0
